@@ -30,14 +30,17 @@ static void mavlink_test_aa241x_mission_status(uint8_t system_id, uint8_t compon
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_aa241x_mission_status_t packet_in = {
-		17.0,45.0,29,96
+		17.0,45.0,73.0,41,108,175,242
     };
 	mavlink_aa241x_mission_status_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.score = packet_in.score;
         	packet1.mission_time = packet_in.mission_time;
+        	packet1.battery_used = packet_in.battery_used;
         	packet1.can_start = packet_in.can_start;
         	packet1.in_mission = packet_in.in_mission;
+        	packet1.wind_direction = packet_in.wind_direction;
+        	packet1.mission_index = packet_in.mission_index;
         
         
 
@@ -47,12 +50,12 @@ static void mavlink_test_aa241x_mission_status(uint8_t system_id, uint8_t compon
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_aa241x_mission_status_pack(system_id, component_id, &msg , packet1.can_start , packet1.in_mission , packet1.score , packet1.mission_time );
+	mavlink_msg_aa241x_mission_status_pack(system_id, component_id, &msg , packet1.can_start , packet1.in_mission , packet1.score , packet1.mission_time , packet1.battery_used , packet1.wind_direction , packet1.mission_index );
 	mavlink_msg_aa241x_mission_status_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_aa241x_mission_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.can_start , packet1.in_mission , packet1.score , packet1.mission_time );
+	mavlink_msg_aa241x_mission_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.can_start , packet1.in_mission , packet1.score , packet1.mission_time , packet1.battery_used , packet1.wind_direction , packet1.mission_index );
 	mavlink_msg_aa241x_mission_status_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -65,7 +68,7 @@ static void mavlink_test_aa241x_mission_status(uint8_t system_id, uint8_t compon
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_aa241x_mission_status_send(MAVLINK_COMM_1 , packet1.can_start , packet1.in_mission , packet1.score , packet1.mission_time );
+	mavlink_msg_aa241x_mission_status_send(MAVLINK_COMM_1 , packet1.can_start , packet1.in_mission , packet1.score , packet1.mission_time , packet1.battery_used , packet1.wind_direction , packet1.mission_index );
 	mavlink_msg_aa241x_mission_status_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -262,13 +265,13 @@ static void mavlink_test_aa241x_grid_combined(uint8_t system_id, uint8_t compone
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_aa241x_grid_combined_t packet_in = {
-		93372036854775807ULL,{ 963497880, 963497881, 963497882, 963497883, 963497884, 963497885, 963497886, 963497887, 963497888, 963497889, 963497890, 963497891, 963497892 }
+		93372036854775807ULL,{ 963497880, 963497881, 963497882, 963497883, 963497884, 963497885, 963497886, 963497887, 963497888, 963497889, 963497890, 963497891 }
     };
 	mavlink_aa241x_grid_combined_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.mission_time = packet_in.mission_time;
         
-        	mav_array_memcpy(packet1.cell, packet_in.cell, sizeof(uint32_t)*13);
+        	mav_array_memcpy(packet1.cell, packet_in.cell, sizeof(uint32_t)*12);
         
 
         memset(&packet2, 0, sizeof(packet2));

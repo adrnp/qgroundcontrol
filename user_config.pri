@@ -28,6 +28,8 @@
 # correspond to an include folder under `libs/mavlink/include/mavlink/v1.0`. You can
 # also force a build to use only common mavlink message by setting MAVLINK_CONF to empty here.
 MAVLINK_CONF = aa241x
+# MAVLINK_CONF = jager
+
 
 # Override compilation of QGroundControl's features in your build. This overrides the default
 # options for QGroundControl. To see what those are, refer to README.md.

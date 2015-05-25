@@ -5,22 +5,22 @@
 typedef struct __mavlink_aa241x_grid_combined_t
 {
  uint64_t mission_time; ///< The time this grid was sent
- uint32_t cell[13]; ///< compact version of cells info in bounds
+ uint32_t cell[12]; ///< compact version of cells info in bounds
 } mavlink_aa241x_grid_combined_t;
 
-#define MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN 60
-#define MAVLINK_MSG_ID_159_LEN 60
+#define MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN 56
+#define MAVLINK_MSG_ID_159_LEN 56
 
-#define MAVLINK_MSG_ID_AA241X_GRID_COMBINED_CRC 79
-#define MAVLINK_MSG_ID_159_CRC 79
+#define MAVLINK_MSG_ID_AA241X_GRID_COMBINED_CRC 215
+#define MAVLINK_MSG_ID_159_CRC 215
 
-#define MAVLINK_MSG_AA241X_GRID_COMBINED_FIELD_CELL_LEN 13
+#define MAVLINK_MSG_AA241X_GRID_COMBINED_FIELD_CELL_LEN 12
 
 #define MAVLINK_MESSAGE_INFO_AA241X_GRID_COMBINED { \
 	"AA241X_GRID_COMBINED", \
 	2, \
 	{  { "mission_time", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_aa241x_grid_combined_t, mission_time) }, \
-         { "cell", NULL, MAVLINK_TYPE_UINT32_T, 13, 8, offsetof(mavlink_aa241x_grid_combined_t, cell) }, \
+         { "cell", NULL, MAVLINK_TYPE_UINT32_T, 12, 8, offsetof(mavlink_aa241x_grid_combined_t, cell) }, \
          } \
 }
 
@@ -41,12 +41,12 @@ static inline uint16_t mavlink_msg_aa241x_grid_combined_pack(uint8_t system_id, 
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN];
 	_mav_put_uint64_t(buf, 0, mission_time);
-	_mav_put_uint32_t_array(buf, 8, cell, 13);
+	_mav_put_uint32_t_array(buf, 8, cell, 12);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN);
 #else
 	mavlink_aa241x_grid_combined_t packet;
 	packet.mission_time = mission_time;
-	mav_array_memcpy(packet.cell, cell, sizeof(uint32_t)*13);
+	mav_array_memcpy(packet.cell, cell, sizeof(uint32_t)*12);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN);
 #endif
 
@@ -75,12 +75,12 @@ static inline uint16_t mavlink_msg_aa241x_grid_combined_pack_chan(uint8_t system
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN];
 	_mav_put_uint64_t(buf, 0, mission_time);
-	_mav_put_uint32_t_array(buf, 8, cell, 13);
+	_mav_put_uint32_t_array(buf, 8, cell, 12);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN);
 #else
 	mavlink_aa241x_grid_combined_t packet;
 	packet.mission_time = mission_time;
-	mav_array_memcpy(packet.cell, cell, sizeof(uint32_t)*13);
+	mav_array_memcpy(packet.cell, cell, sizeof(uint32_t)*12);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN);
 #endif
 
@@ -133,7 +133,7 @@ static inline void mavlink_msg_aa241x_grid_combined_send(mavlink_channel_t chan,
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN];
 	_mav_put_uint64_t(buf, 0, mission_time);
-	_mav_put_uint32_t_array(buf, 8, cell, 13);
+	_mav_put_uint32_t_array(buf, 8, cell, 12);
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AA241X_GRID_COMBINED, buf, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_CRC);
 #else
@@ -142,7 +142,7 @@ static inline void mavlink_msg_aa241x_grid_combined_send(mavlink_channel_t chan,
 #else
 	mavlink_aa241x_grid_combined_t packet;
 	packet.mission_time = mission_time;
-	mav_array_memcpy(packet.cell, cell, sizeof(uint32_t)*13);
+	mav_array_memcpy(packet.cell, cell, sizeof(uint32_t)*12);
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AA241X_GRID_COMBINED, (const char *)&packet, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_CRC);
 #else
@@ -164,7 +164,7 @@ static inline void mavlink_msg_aa241x_grid_combined_send_buf(mavlink_message_t *
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
 	_mav_put_uint64_t(buf, 0, mission_time);
-	_mav_put_uint32_t_array(buf, 8, cell, 13);
+	_mav_put_uint32_t_array(buf, 8, cell, 12);
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AA241X_GRID_COMBINED, buf, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_CRC);
 #else
@@ -173,7 +173,7 @@ static inline void mavlink_msg_aa241x_grid_combined_send_buf(mavlink_message_t *
 #else
 	mavlink_aa241x_grid_combined_t *packet = (mavlink_aa241x_grid_combined_t *)msgbuf;
 	packet->mission_time = mission_time;
-	mav_array_memcpy(packet->cell, cell, sizeof(uint32_t)*13);
+	mav_array_memcpy(packet->cell, cell, sizeof(uint32_t)*12);
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AA241X_GRID_COMBINED, (const char *)packet, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_LEN, MAVLINK_MSG_ID_AA241X_GRID_COMBINED_CRC);
 #else
@@ -205,7 +205,7 @@ static inline uint64_t mavlink_msg_aa241x_grid_combined_get_mission_time(const m
  */
 static inline uint16_t mavlink_msg_aa241x_grid_combined_get_cell(const mavlink_message_t* msg, uint32_t *cell)
 {
-	return _MAV_RETURN_uint32_t_array(msg, cell, 13,  8);
+	return _MAV_RETURN_uint32_t_array(msg, cell, 12,  8);
 }
 
 /**
